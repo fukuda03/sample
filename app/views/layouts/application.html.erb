@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
+    <% end %>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <%= link_to root_path do %>
+         <span>トップ</span>
+         <% end %>
+         <ul class="nav navbar-nav navbar-right">
+           <% if logged_in? %>
+            <li>
+              <%= link_to favorites_new_path do %>
+                <i>いいね一覧</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to topics_new_path do %>
+                <i>投稿</i>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to topics_path do %>
+                <i>投稿一覧</i>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to randomtitles_new_path do %>
+               <i>お題登録</i>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to randomtitles_index_path do %>
+               <i>お題一覧</i>
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to hashtags_hashtag_path do %>
+               <i>ハッシュタグ一覧</i>
+              <% end %>
+            </li>
+
+
+
+            <li>
+              <%= link_to users_show_path do %>
+                <i>マイページ</i>
+              <% end %>
+            </li>
+
+
+            <li>
+              <%= link_to logout_path, method: :delete do %>
+                <i>ログアウト</i>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_path do %>
+                <i>ユーザー登録</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to login_path do %>
+                <i>ログイン</i>
+              <% end %>
+            </li>
+          <% end %>
+         </ul>
+      </div>
+    </nav>
+
+
+    <%= yield %>
+    <script>
+      $(function(){
+        $(".alert").fadeOut(5000);
+      });
+
+    </script>
+
+
+  </body>
+
+</html>
