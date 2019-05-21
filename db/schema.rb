@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_16_103508) do
+ActiveRecord::Schema.define(version: 2019_05_20_144750) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_05_16_103508) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "randomtitle_id"
+    t.index ["randomtitle_id"], name: "index_topics_on_randomtitle_id"
   end
 
   create_table "topics_hashtags", id: false, force: :cascade do |t|

@@ -2,9 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <% @random.each do |random| %>
-        <h1><%= random.title %></h1>
+        <% if @random %>
+         <h1><%= @random.title %></h1>
         <% end %>
+         <% if @topic.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= @topic.errors.count %>件のエラーがあります。</h2>
+            <ul>
+              <% @topic.errors.full_messages.each do |msg| %>
+               <li><%= msg %></li>
+              <% end %>
+            </ul>
+
+          </div>
+         <% end %>
         <%= form_for @topic do |f| %>
           <div class="form-group">
             <%= f.label :image %>
@@ -15,7 +26,7 @@
             <%= f.label :description %>
             <%= f.text_area :description, class: 'form-control' %>
           </div>
-
+          <%= f.hidden_field :randomtitle_id, value: @random.id %>
           <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
 
         <% end %>

@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   def new
     @topic = Topic.new
-    @random = Randomtitle.offset(rand(Randomtitle.count)).first(1)
+    @random = Randomtitle.offset(rand(Randomtitle.count)).first
   end
 
   def index
@@ -36,6 +36,6 @@ class TopicsController < ApplicationController
 
   private
   def topic_params
-    params.require(:topic).permit(:image, :description)
+    params.require(:topic).permit(:randomtitle_id, :image, :description)
   end
 end

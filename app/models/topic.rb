@@ -4,6 +4,7 @@ class Topic < ApplicationRecord
   validates :image, presence: true
 
   belongs_to :user
+  belongs_to :randomtitle
   has_many :comments
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: 'user'

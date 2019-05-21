@@ -1,6 +1,17 @@
 <div class="users-new-wrapper">
   <div class="container">
     <div class="row">
+      <% if @random.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @random.errors.count %>件のエラーがあります。</h2>
+
+          <ul>
+          <% @random.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>      
       <div class="col-md-offset-4 col-md-4 users-new-container">
         <h1 class="text-center text-white">お題</h1>
         <%= form_for @random do |f| %>
